@@ -28,46 +28,60 @@ public class GUIScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        inputKey = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        insert = new javax.swing.JButton();
+        search = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(0, 0, 886, 510));
+        setMinimumSize(new java.awt.Dimension(886, 510));
+        setSize(new java.awt.Dimension(886, 510));
+        getContentPane().setLayout(null);
 
-        jLabel1.setText("TEST");
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("EXTENDIBLE HASHING");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(170, 0, 570, 90);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        inputKey.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inputKey.setBorder(new javax.swing.border.MatteBorder(null));
+        inputKey.setDebugGraphicsOptions(javax.swing.DebugGraphics.FLASH_OPTION);
+        inputKey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                inputKeyActionPerformed(evt);
             }
         });
+        getContentPane().add(inputKey);
+        inputKey.setBounds(440, 120, 140, 30);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(328, 328, 328)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(327, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(443, Short.MAX_VALUE))
-        );
+        jLabel3.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Enter Key :");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(310, 120, 130, 28);
+
+        insert.setIcon(new javax.swing.ImageIcon("C:\\module-2\\Images\\button_insert.png"));
+        getContentPane().add(insert);
+        insert.setBounds(80, 180, 150, 50);
+
+        search.setIcon(new javax.swing.ImageIcon("C:\\module-2\\Images\\button_search.png"));
+        getContentPane().add(search);
+        search.setBounds(670, 180, 150, 50);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\module-2\\Images\\nackg.png")); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 890, 510);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void inputKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputKeyActionPerformed
+        
+    }//GEN-LAST:event_inputKeyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -96,7 +110,7 @@ public class GUIScreen extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-         System.out.println("GUI Java");
+        System.out.println("GUI Java");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -106,7 +120,11 @@ public class GUIScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField inputKey;
+    private javax.swing.JButton insert;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton search;
     // End of variables declaration//GEN-END:variables
 }

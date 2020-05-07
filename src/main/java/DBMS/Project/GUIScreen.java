@@ -30,9 +30,8 @@ public class GUIScreen extends javax.swing.JFrame {
     Buckets b_initial2;
      JLabel[] labels;
      int bfr;
+     String gd;
     public GUIScreen() {
-        initComponents();
-        
         D = new Directory();
         bfr=D.bfr;
         b_initial1=new Buckets();
@@ -48,8 +47,14 @@ public class GUIScreen extends javax.swing.JFrame {
                 D.buckets.add(b_initial2);
             }
         }
+        String gd=Integer.toString(D.global_depth);
+        System.out.println(gd);
+        initComponents();
+        
         heading();
         labels=createLabels();
+        
+        
     }
     private JLabel[] createLabels(){
         int h=jScrollPane1.getHeight()/(bfr+2);
@@ -60,7 +65,7 @@ public class GUIScreen extends javax.swing.JFrame {
         JLabel[] labels=new JLabel[1000];
         for (int i=0;i<1000;i++){
             labels[i]=new JLabel("");
-            labels[i].setPreferredSize(new Dimension(w-10,h/5));
+            labels[i].setPreferredSize(new Dimension(w-10,h/4));
             labels[i].setForeground(Color.white);
         }
         return labels;
@@ -79,14 +84,16 @@ public class GUIScreen extends javax.swing.JFrame {
           outputPane.add(Dir,new FlowLayout());
         for(int i=0;i<bfr;i++)
         {
-            head[i].setText("El "+i);
+            head[i].setText("El "+(i+1));
                 head[i].setVisible(true);
+                head[i].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 outputPane.add(head[i],new FlowLayout());
         }   
           JLabel LD=new JLabel("LD");
             LD.setPreferredSize(new Dimension(w-10,h/5));
             LD.setForeground(Color.white); 
             LD.setVisible(true);
+            LD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             outputPane.add(LD,new FlowLayout());
     }
     /**
@@ -105,6 +112,10 @@ public class GUIScreen extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         insert = new javax.swing.JButton();
         search = new javax.swing.JButton();
+        gdLabel = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         inputKey = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         tempL = new javax.swing.JLabel();
@@ -137,6 +148,7 @@ public class GUIScreen extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("EXTENDIBLE HASHING");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         getContentPane().add(jLabel1);
         jLabel1.setBounds(170, 0, 570, 90);
 
@@ -168,22 +180,6 @@ public class GUIScreen extends javax.swing.JFrame {
         jLabel3.setBounds(300, 120, 140, 29);
 
         insert.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/main/java/button_insert.png")); // NOI18N
-        search.setIcon(new javax.swing.ImageIcon("C:\\module-2\\Images\\button_search.png"));
-        insert.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                insertMouseMoved(evt);
-            }
-        });
-        insert.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                insertFocusLost(evt);
-            }
-        });
-        insert.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                insertMouseExited(evt);
-            }
-        });
         insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertActionPerformed(evt);
@@ -200,6 +196,31 @@ public class GUIScreen extends javax.swing.JFrame {
         });
         getContentPane().add(search);
         search.setBounds(660, 200, 150, 50);
+
+        gdLabel.setFont(new java.awt.Font("Droid Serif", 1, 24)); // NOI18N
+        gdLabel.setForeground(new java.awt.Color(255, 255, 255));
+        gdLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(gdLabel);
+        gdLabel.setBounds(170, 275, 40, 60);
+        gdLabel.setText("2");
+
+        jLabel7.setFont(new java.awt.Font("Droid Serif", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText(":");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(160, 280, 20, 50);
+
+        jLabel6.setFont(new java.awt.Font("Droid Serif", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Depth");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(70, 290, 110, 50);
+
+        jLabel8.setFont(new java.awt.Font("Droid Serif", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Global");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(70, 260, 110, 50);
 
         inputKey.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         inputKey.setText("Primary Key");
@@ -255,8 +276,13 @@ public class GUIScreen extends javax.swing.JFrame {
     JOptionPane.ERROR_MESSAGE);
         }
         display(D);
+        outputPane.revalidate();
+        String gd=Integer.toString(D.global_depth);
+        gdLabel.setText(gd);
+
+        jScrollPane1.revalidate();
         }
-        boolean B=Test.search(i,D);
+       
     }//GEN-LAST:event_insertActionPerformed
 
     private void inputKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputKeyActionPerformed
@@ -276,7 +302,9 @@ public class GUIScreen extends javax.swing.JFrame {
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         inputKey.setText("Primary Key");
         System.out.println(i);
-        
+        String gd=Integer.toString(D.global_depth);
+        gdLabel.setText(gd);
+
         boolean B=Test.search(i,D);
         if(B)
         {      
@@ -290,52 +318,6 @@ public class GUIScreen extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_searchActionPerformed
-
-    private void insertFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_insertFocusLost
-        
-        boolean B=Test.search(i,D);
-        if(B)
-        {      
-
-            tempL.setText("w");
-            
-        }
-        else
-        {
-            tempL.setText("w");
-            
-        }
-    }//GEN-LAST:event_insertFocusLost
-
-    private void insertMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertMouseExited
-        boolean B=Test.search(i,D);
-        if(B)
-        {      
-
-            tempL.setText("w");
-            
-        }
-        else
-        {
-            tempL.setText("w");
-            
-        }
-    }//GEN-LAST:event_insertMouseExited
-
-    private void insertMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertMouseMoved
-        boolean B=Test.search(i,D);
-        if(B)
-        {      
-
-            tempL.setText("w");
-            
-        }
-        else
-        {
-            tempL.setText("w");
-            
-        }
-    }//GEN-LAST:event_insertMouseMoved
     public void display(Directory dir)
     {   int el=0,len=0;
         for(int i=0;i<(1<<dir.global_depth);i++)
@@ -353,7 +335,10 @@ public class GUIScreen extends javax.swing.JFrame {
                 System.out.print(b_dis.values[j]+" ");
                 temp=Integer.toString(b_dis.values[j]);
                 labels[len].setText(temp);
-                labels[len].setBackground(new java.awt.Color(0,255,228));
+                labels[len].setBackground(new java.awt.Color(46, 196, 255));
+                labels[len].setOpaque(true);
+                labels[len].setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+                labels[len].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 labels[len].setVisible(true);
                 
                 outputPane.add(labels[len],new FlowLayout());
@@ -361,9 +346,13 @@ public class GUIScreen extends javax.swing.JFrame {
                 len+=1;
             }
             for(int j=el;j<bfr;j++)
-            {                   labels[len].setText("Blank");
+            {                   labels[len].setText("");
 
                 labels[len].setVisible(true);
+                labels[len].setOpaque(true);
+                labels[len].setBackground(new java.awt.Color(46, 196, 255));
+                labels[len].setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255,255, 255), 2));
+                labels[len].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 outputPane.add(labels[len],new FlowLayout());
                 len+=1;
             }
@@ -371,6 +360,7 @@ public class GUIScreen extends javax.swing.JFrame {
             temp=Integer.toString(b_dis.local_depth);
                 labels[len].setText(temp);
                 labels[len].setVisible(true);
+                labels[len].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 outputPane.add(labels[len],new FlowLayout());
                 len+=1;
             System.out.println();
@@ -415,11 +405,15 @@ public class GUIScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel gdLabel;
     private javax.swing.JTextField inputKey;
     private javax.swing.JButton insert;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel outputPane;
     private javax.swing.JButton search;

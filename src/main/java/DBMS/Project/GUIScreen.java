@@ -5,19 +5,90 @@
  */
 package DBMS.Project;
 
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nishit
  */
 public class GUIScreen extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form NewJFrame
      */
+    int i;
+    int flag=0;
+    Directory D;
+    Buckets b_initial1;
+    Buckets b_initial2;
+     JLabel[] labels;
+     int bfr;
     public GUIScreen() {
         initComponents();
+        
+        D = new Directory();
+        bfr=D.bfr;
+        b_initial1=new Buckets();
+        b_initial2=new Buckets();
+        for(int i=0;i<(1<<D.global_depth);i++)
+        {
+            if(i%2==0)
+            {
+                D.buckets.add(b_initial1); 
+            }
+            else
+            {
+                D.buckets.add(b_initial2);
+            }
+        }
+        heading();
+        labels=createLabels();
     }
-
+    private JLabel[] createLabels(){
+        int h=jScrollPane1.getHeight()/(bfr+2);
+        int w=jScrollPane1.getWidth()/(bfr+2);
+        System.out.println(w);
+        System.out.println(h);
+        
+        JLabel[] labels=new JLabel[1000];
+        for (int i=0;i<1000;i++){
+            labels[i]=new JLabel("");
+            labels[i].setPreferredSize(new Dimension(w-10,h/5));
+            labels[i].setForeground(Color.white);
+        }
+        return labels;
+    }
+    public void heading()
+    {   int h=jScrollPane1.getHeight()/(bfr+2);
+        int w=jScrollPane1.getWidth()/(bfr+2);
+        System.out.println(w);
+        System.out.println(h);
+        
+        JLabel Dir=new JLabel("Dir");
+            Dir.setPreferredSize(new Dimension(w-10,h/5));
+            Dir.setForeground(Color.white);
+            Dir.setVisible(true);
+          JLabel[] head =createLabels();
+          outputPane.add(Dir,new FlowLayout());
+        for(int i=0;i<bfr;i++)
+        {
+            head[i].setText("El "+i);
+                head[i].setVisible(true);
+                outputPane.add(head[i],new FlowLayout());
+        }   
+          JLabel LD=new JLabel("LD");
+            LD.setPreferredSize(new Dimension(w-10,h/5));
+            LD.setForeground(Color.white); 
+            LD.setVisible(true);
+            outputPane.add(LD,new FlowLayout());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,18 +98,40 @@ public class GUIScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        searchOutput = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        inputKey = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        outputPane = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         insert = new javax.swing.JButton();
         search = new javax.swing.JButton();
+        inputKey = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        tempL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Extendible Hashing");
+        setAlwaysOnTop(true);
         setBounds(new java.awt.Rectangle(0, 0, 886, 510));
         setMinimumSize(new java.awt.Dimension(886, 510));
+        setResizable(false);
         setSize(new java.awt.Dimension(886, 510));
         getContentPane().setLayout(null);
+
+        searchOutput.setEditable(false);
+        searchOutput.setColumns(20);
+        searchOutput.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        searchOutput.setForeground(new java.awt.Color(255, 255, 255));
+        searchOutput.setLineWrap(true);
+        searchOutput.setRows(5);
+        searchOutput.setWrapStyleWord(true);
+        searchOutput.setCaretColor(new java.awt.Color(255, 255, 255));
+        searchOutput.setMinimumSize(new java.awt.Dimension(100, 100));
+        searchOutput.setOpaque(false);
+        searchOutput.setSelectedTextColor(new java.awt.Color(255, 255, 255));
+        searchOutput.setSelectionColor(new java.awt.Color(255, 255, 255));
+        getContentPane().add(searchOutput);
+        searchOutput.setBounds(660, 260, 150, 170);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -47,9 +140,78 @@ public class GUIScreen extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(170, 0, 570, 90);
 
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setHorizontalScrollBar(null);
+        jScrollPane1.setMaximumSize(new java.awt.Dimension(270, 32767));
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(270, 7));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(270, 100));
+
+        outputPane.setBackground(new java.awt.Color(0, 62, 174));
+        outputPane.setForeground(new java.awt.Color(0, 62, 174));
+        outputPane.setToolTipText("");
+        outputPane.setAutoscrolls(true);
+        outputPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        outputPane.setMaximumSize(new java.awt.Dimension(270, 32767));
+        outputPane.setMinimumSize(new java.awt.Dimension(270, 210));
+        outputPane.setPreferredSize(new java.awt.Dimension(270, 3000));
+        jScrollPane1.setViewportView(outputPane);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(300, 180, 290, 300);
+
+        jLabel3.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Enter Key :");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(300, 120, 140, 29);
+
+        insert.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/main/java/button_insert.png")); // NOI18N
+        search.setIcon(new javax.swing.ImageIcon("C:\\module-2\\Images\\button_search.png"));
+        insert.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                insertMouseMoved(evt);
+            }
+        });
+        insert.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                insertFocusLost(evt);
+            }
+        });
+        insert.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                insertMouseExited(evt);
+            }
+        });
+        insert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertActionPerformed(evt);
+            }
+        });
+        getContentPane().add(insert);
+        insert.setBounds(70, 200, 150, 50);
+
+        search.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/main/java/button_search.png")); // NOI18N
+        search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchActionPerformed(evt);
+            }
+        });
+        getContentPane().add(search);
+        search.setBounds(660, 200, 150, 50);
+
         inputKey.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        inputKey.setBorder(new javax.swing.border.MatteBorder(null));
-        inputKey.setDebugGraphicsOptions(javax.swing.DebugGraphics.FLASH_OPTION);
+        inputKey.setText("Primary Key");
+        inputKey.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        inputKey.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputKeyFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputKeyFocusLost(evt);
+            }
+        });
         inputKey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputKeyActionPerformed(evt);
@@ -58,31 +220,162 @@ public class GUIScreen extends javax.swing.JFrame {
         getContentPane().add(inputKey);
         inputKey.setBounds(440, 120, 140, 30);
 
-        jLabel3.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Enter Key :");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(310, 120, 130, 28);
-
-        insert.setIcon(new javax.swing.ImageIcon("C:\\module-2\\Images\\button_insert.png"));
-        getContentPane().add(insert);
-        insert.setBounds(80, 180, 150, 50);
-
-        search.setIcon(new javax.swing.ImageIcon("C:\\module-2\\Images\\button_search.png"));
-        getContentPane().add(search);
-        search.setBounds(670, 180, 150, 50);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\module-2\\Images\\nackg.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/main/java/nackg.png")); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 890, 510);
+        jLabel2.getAccessibleContext().setAccessibleDescription("");
 
-        pack();
+        tempL.setText("jLabel4");
+        getContentPane().add(tempL);
+        tempL.setBounds(160, 430, 51, 15);
+
+        setSize(new java.awt.Dimension(885, 535));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
+       
+        inputKey.setText("Primary Key");
+        if(Test.search(i,D))
+        {
+            JOptionPane.showMessageDialog(this,
+    "The Value Already Exits",
+    "Inane error",
+    JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+        System.out.println(i);
+        
+        Test.insert(i,D);
+        if(D.global_depth>10)
+        {
+        JOptionPane.showMessageDialog(this,
+    "Exceptional case Encountered",
+    "Inane error",
+    JOptionPane.ERROR_MESSAGE);
+        }
+        display(D);
+        }
+        boolean B=Test.search(i,D);
+    }//GEN-LAST:event_insertActionPerformed
 
     private void inputKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputKeyActionPerformed
-        
+        i = Integer.parseInt(inputKey.getText());
+        System.out.println(i);
     }//GEN-LAST:event_inputKeyActionPerformed
 
+    private void inputKeyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputKeyFocusGained
+        inputKey.setText("");
+        
+    }//GEN-LAST:event_inputKeyFocusGained
+
+    private void inputKeyFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputKeyFocusLost
+        i = Integer.parseInt(inputKey.getText());
+    }//GEN-LAST:event_inputKeyFocusLost
+
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+        inputKey.setText("Primary Key");
+        System.out.println(i);
+        
+        boolean B=Test.search(i,D);
+        if(B)
+        {      
+
+            searchOutput.setText(i+" exists in the Hash table");
+            
+        }
+        else
+        {
+            searchOutput.setText(i+" does not exists in the Hash table");
+            
+        }
+    }//GEN-LAST:event_searchActionPerformed
+
+    private void insertFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_insertFocusLost
+        
+        boolean B=Test.search(i,D);
+        if(B)
+        {      
+
+            tempL.setText("w");
+            
+        }
+        else
+        {
+            tempL.setText("w");
+            
+        }
+    }//GEN-LAST:event_insertFocusLost
+
+    private void insertMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertMouseExited
+        boolean B=Test.search(i,D);
+        if(B)
+        {      
+
+            tempL.setText("w");
+            
+        }
+        else
+        {
+            tempL.setText("w");
+            
+        }
+    }//GEN-LAST:event_insertMouseExited
+
+    private void insertMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertMouseMoved
+        boolean B=Test.search(i,D);
+        if(B)
+        {      
+
+            tempL.setText("w");
+            
+        }
+        else
+        {
+            tempL.setText("w");
+            
+        }
+    }//GEN-LAST:event_insertMouseMoved
+    public void display(Directory dir)
+    {   int el=0,len=0;
+        for(int i=0;i<(1<<dir.global_depth);i++)
+        {   
+            Buckets b_dis=dir.buckets.get(i);
+            int n_ele=b_dis.no_elements;
+            //System.out.println(n_ele);
+                String temp=Integer.toBinaryString(i);
+                labels[len].setText(temp);
+                labels[len].setVisible(true);
+                outputPane.add(labels[len],new FlowLayout());
+                len+=1;                
+            for(int j=0;j<n_ele;j++)
+            {
+                System.out.print(b_dis.values[j]+" ");
+                temp=Integer.toString(b_dis.values[j]);
+                labels[len].setText(temp);
+                labels[len].setBackground(new java.awt.Color(0,255,228));
+                labels[len].setVisible(true);
+                
+                outputPane.add(labels[len],new FlowLayout());
+                el+=1;
+                len+=1;
+            }
+            for(int j=el;j<bfr;j++)
+            {                   labels[len].setText("Blank");
+
+                labels[len].setVisible(true);
+                outputPane.add(labels[len],new FlowLayout());
+                len+=1;
+            }
+            el=0;
+            temp=Integer.toString(b_dis.local_depth);
+                labels[len].setText(temp);
+                labels[len].setVisible(true);
+                outputPane.add(labels[len],new FlowLayout());
+                len+=1;
+            System.out.println();
+        }    
+    }
     /**
      * @param args the command line arguments
      */
@@ -111,10 +404,12 @@ public class GUIScreen extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         System.out.println("GUI Java");
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GUIScreen().setVisible(true);
+                
             }
         });
     }
@@ -125,6 +420,11 @@ public class GUIScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel outputPane;
     private javax.swing.JButton search;
+    private javax.swing.JTextArea searchOutput;
+    private javax.swing.JLabel tempL;
     // End of variables declaration//GEN-END:variables
 }
+

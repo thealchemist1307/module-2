@@ -31,6 +31,7 @@ public class GUIScreen extends javax.swing.JFrame {
      JLabel[] labels;
      int bfr;
      String gd;
+     
     public GUIScreen() {
         D = new Directory();
         bfr=D.bfr;
@@ -55,6 +56,24 @@ public class GUIScreen extends javax.swing.JFrame {
         labels=createLabels();
         
         
+    }
+    public Directory clear()
+    {
+        Directory Dnew= new Directory();
+        Buckets b_initial1=new Buckets();
+        Buckets b_initial2=new Buckets();
+        for(int i=0;i<(1<<Dnew.global_depth);i++)
+        {
+            if(i%2==0)
+            {
+                Dnew.buckets.add(b_initial1); 
+            }
+            else
+            {
+                Dnew.buckets.add(b_initial2);
+            }
+        }
+        return Dnew;
     }
     private JLabel[] createLabels(){
         int h=jScrollPane1.getHeight()/(bfr+2);
@@ -105,6 +124,7 @@ public class GUIScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        clearButton = new javax.swing.JButton();
         searchOutput = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -128,6 +148,17 @@ public class GUIScreen extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(886, 510));
         getContentPane().setLayout(null);
+
+        clearButton.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/main/java/button_clear.png")); // NOI18N
+        clearButton.setText("jButton1");
+        clearButton.setBorder(new javax.swing.border.MatteBorder(null));
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(clearButton);
+        clearButton.setBounds(70, 360, 150, 50);
 
         searchOutput.setEditable(false);
         searchOutput.setColumns(20);
@@ -180,6 +211,7 @@ public class GUIScreen extends javax.swing.JFrame {
         jLabel3.setBounds(300, 120, 140, 29);
 
         insert.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/main/java/button_insert.png")); // NOI18N
+        insert.setBorder(new javax.swing.border.MatteBorder(null));
         insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertActionPerformed(evt);
@@ -189,6 +221,7 @@ public class GUIScreen extends javax.swing.JFrame {
         insert.setBounds(70, 200, 150, 50);
 
         search.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/main/java/button_search.png")); // NOI18N
+        search.setBorder(new javax.swing.border.MatteBorder(null));
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchActionPerformed(evt);
@@ -318,6 +351,62 @@ public class GUIScreen extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_searchActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        int el=0,len=0;
+        for(int i=0;i<(1<<D.global_depth);i++)
+        {   
+            Buckets b_dis=D.buckets.get(i);
+            int n_ele=b_dis.no_elements;
+            //System.out.println(n_ele);
+                String temp=Integer.toBinaryString(i);
+                labels[len].setText(temp);
+                labels[len].setVisible(false);
+                outputPane.add(labels[len],new FlowLayout());
+                len+=1;                
+            for(int j=0;j<n_ele;j++)
+            {
+                System.out.print(b_dis.values[j]+" ");
+                temp=Integer.toString(b_dis.values[j]);
+                labels[len].setText(temp);
+                labels[len].setBackground(new java.awt.Color(46, 196, 255));
+                labels[len].setOpaque(true);
+                labels[len].setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+                labels[len].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                labels[len].setVisible(false);
+                
+                outputPane.add(labels[len],new FlowLayout());
+                el+=1;
+                len+=1;
+            }
+            for(int j=el;j<bfr;j++)
+            {                   labels[len].setText("");
+
+                labels[len].setVisible(false);
+                labels[len].setOpaque(true);
+                labels[len].setBackground(new java.awt.Color(46, 196, 255));
+                labels[len].setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255,255, 255), 2));
+                labels[len].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                outputPane.add(labels[len],new FlowLayout());
+                len+=1;
+            }
+            el=0;
+            temp=Integer.toString(b_dis.local_depth);
+                labels[len].setText(temp);
+                labels[len].setVisible(false);
+                labels[len].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                outputPane.add(labels[len],new FlowLayout());
+                len+=1;
+            System.out.println();
+        }
+        D=clear();
+        searchOutput.setText("");
+        gdLabel.setText("2");
+        
+        outputPane.revalidate();
+        jScrollPane1.revalidate();
+        
+    }//GEN-LAST:event_clearButtonActionPerformed
     public void display(Directory dir)
     {   int el=0,len=0;
         for(int i=0;i<(1<<dir.global_depth);i++)
@@ -405,6 +494,7 @@ public class GUIScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clearButton;
     private javax.swing.JLabel gdLabel;
     private javax.swing.JTextField inputKey;
     private javax.swing.JButton insert;

@@ -149,7 +149,7 @@ public class GUIScreen extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(886, 510));
         getContentPane().setLayout(null);
 
-        clearButton.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/module2/button_clear.png")); // NOI18N
+        clearButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/module2/button_clear.png"))); // NOI18N
         clearButton.setText("jButton1");
         clearButton.setBorder(new javax.swing.border.MatteBorder(null));
         clearButton.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +163,7 @@ public class GUIScreen extends javax.swing.JFrame {
         searchOutput.setEditable(false);
         searchOutput.setColumns(20);
         searchOutput.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        
+        searchOutput.setForeground(new java.awt.Color(255, 255, 255));
         searchOutput.setLineWrap(true);
         searchOutput.setRows(5);
         searchOutput.setWrapStyleWord(true);
@@ -179,7 +179,7 @@ public class GUIScreen extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("EXTENDIBLE HASHING");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         getContentPane().add(jLabel1);
         jLabel1.setBounds(170, 0, 570, 90);
 
@@ -210,7 +210,7 @@ public class GUIScreen extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(300, 120, 140, 29);
 
-        insert.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/module2/button_insert.png")); // NOI18N
+        insert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/module2/button_insert.png"))); // NOI18N
         insert.setBorder(new javax.swing.border.MatteBorder(null));
         insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,7 +220,7 @@ public class GUIScreen extends javax.swing.JFrame {
         getContentPane().add(insert);
         insert.setBounds(70, 200, 150, 50);
 
-        search.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/module2/button_search.png")); // NOI18N
+        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/module2/button_search.png"))); // NOI18N
         search.setBorder(new javax.swing.border.MatteBorder(null));
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,13 +303,14 @@ public class GUIScreen extends javax.swing.JFrame {
         Test.insert(i,D);
         if(D.global_depth>10)
         {
-        JOptionPane.showMessageDialog(this,
+        String[] args = new String[0]; // Or String[] args = {};
+        Main.main(args);
+            JOptionPane.showMessageDialog(this,
     "Exceptional case Encountered",
     "Inane error",
     JOptionPane.ERROR_MESSAGE);
         
-        String[] args = new String[0]; // Or String[] args = {};
-        Main.main(args);
+        
         this.dispose();
         }
         display(D);

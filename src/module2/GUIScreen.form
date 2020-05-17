@@ -41,7 +41,7 @@
     <Component class="javax.swing.JButton" name="clearButton">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/nishit/module-2/src/main/java/button_clear.png"/>
+          <Image iconType="3" name="/module2/button_clear.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jButton1"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -102,12 +102,8 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="EXTENDIBLE HASHING"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder thickness="3">
-              <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
-            </LineBorder>
-          </Border>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255))" type="code"/>
         </Property>
       </Properties>
       <Constraints>
@@ -193,7 +189,7 @@
     <Component class="javax.swing.JButton" name="insert">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/nishit/module-2/src/main/java/button_insert.png"/>
+          <Image iconType="3" name="/module2/button_insert.png"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
@@ -216,7 +212,7 @@
     <Component class="javax.swing.JButton" name="search">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/nishit/module-2/src/main/java/button_search.png"/>
+          <Image iconType="3" name="/module2/button_search.png"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
@@ -325,7 +321,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/nishit/module-2/src/main/java/nackg.png"/>
+          <Image iconType="2" name="/home/nishit/module-2/src/module2/nackg.png"/>
         </Property>
       </Properties>
       <AccessibilityProperties>

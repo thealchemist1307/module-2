@@ -7,7 +7,24 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 class Test
-{   
+{   public Directory clear()
+    {
+        Directory Dnew= new Directory();
+        Buckets b_initial1=new Buckets();
+        Buckets b_initial2=new Buckets();
+        for(int i=0;i<(1<<Dnew.global_depth);i++)
+        {
+            if(i%2==0)
+            {
+                Dnew.buckets.add(b_initial1); 
+            }
+            else
+            {
+                Dnew.buckets.add(b_initial2);
+            }
+        }
+        return Dnew;
+    }
     public static void insert(int key,Directory dir)
     {   System.out.println("In Insert");
         int hash_decimal=dir.gethash(key);
@@ -15,7 +32,8 @@ class Test
         if(dir.global_depth>10)
         {
             System.out.println("Exceptional Case Encountered");
-            
+             Test t =new Test();
+             Directory D=t.clear();
             return;
         }
         if(dir.buckets.get(hash_bin_index).no_elements==dir.bfr)  // Overflow condition

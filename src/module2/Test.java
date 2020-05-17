@@ -1,5 +1,5 @@
 // We will have to ensure that the maximum number of repeated value is less than bfr
-package DBMS.Project;
+package module2;
 
 import java.util.ArrayList;
 import java.util.List;

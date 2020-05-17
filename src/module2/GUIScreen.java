@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DBMS.Project;
+package module2;
 
 
 import java.awt.Color;
@@ -51,7 +51,7 @@ public class GUIScreen extends javax.swing.JFrame {
         String gd=Integer.toString(D.global_depth);
         System.out.println(gd);
         initComponents();
-        
+        searchOutput.setVisible(false);
         heading();
         labels=createLabels();
         
@@ -81,8 +81,8 @@ public class GUIScreen extends javax.swing.JFrame {
         System.out.println(w);
         System.out.println(h);
         
-        JLabel[] labels=new JLabel[1000];
-        for (int i=0;i<1000;i++){
+        JLabel[] labels=new JLabel[2000000];
+        for (int i=0;i<200000;i++){
             labels[i]=new JLabel("");
             labels[i].setPreferredSize(new Dimension(w-10,h/4));
             labels[i].setForeground(Color.white);
@@ -149,7 +149,7 @@ public class GUIScreen extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(886, 510));
         getContentPane().setLayout(null);
 
-        clearButton.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/main/java/button_clear.png")); // NOI18N
+        clearButton.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/module2/button_clear.png")); // NOI18N
         clearButton.setText("jButton1");
         clearButton.setBorder(new javax.swing.border.MatteBorder(null));
         clearButton.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +163,7 @@ public class GUIScreen extends javax.swing.JFrame {
         searchOutput.setEditable(false);
         searchOutput.setColumns(20);
         searchOutput.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        searchOutput.setForeground(new java.awt.Color(255, 255, 255));
+        
         searchOutput.setLineWrap(true);
         searchOutput.setRows(5);
         searchOutput.setWrapStyleWord(true);
@@ -210,7 +210,7 @@ public class GUIScreen extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(300, 120, 140, 29);
 
-        insert.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/main/java/button_insert.png")); // NOI18N
+        insert.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/module2/button_insert.png")); // NOI18N
         insert.setBorder(new javax.swing.border.MatteBorder(null));
         insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,7 +220,7 @@ public class GUIScreen extends javax.swing.JFrame {
         getContentPane().add(insert);
         insert.setBounds(70, 200, 150, 50);
 
-        search.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/main/java/button_search.png")); // NOI18N
+        search.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/module2/button_search.png")); // NOI18N
         search.setBorder(new javax.swing.border.MatteBorder(null));
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,7 +274,7 @@ public class GUIScreen extends javax.swing.JFrame {
         getContentPane().add(inputKey);
         inputKey.setBounds(440, 120, 140, 30);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/main/java/nackg.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/module2/nackg.png")); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 890, 510);
         jLabel2.getAccessibleContext().setAccessibleDescription("");
@@ -307,6 +307,10 @@ public class GUIScreen extends javax.swing.JFrame {
     "Exceptional case Encountered",
     "Inane error",
     JOptionPane.ERROR_MESSAGE);
+        
+        String[] args = new String[0]; // Or String[] args = {};
+        Main.main(args);
+        this.dispose();
         }
         display(D);
         outputPane.revalidate();
@@ -341,12 +345,15 @@ public class GUIScreen extends javax.swing.JFrame {
         boolean B=Test.search(i,D);
         if(B)
         {      
-
+            searchOutput.setVisible(true);
+            searchOutput.setOpaque(false);
+            
             searchOutput.setText(i+" exists in the Hash table");
             
         }
         else
         {
+             searchOutput.setVisible(true);
             searchOutput.setText(i+" does not exists in the Hash table");
             
         }
@@ -363,7 +370,10 @@ public class GUIScreen extends javax.swing.JFrame {
                 labels[len].setText(temp);
                 labels[len].setVisible(false);
                 outputPane.add(labels[len],new FlowLayout());
-                len+=1;                
+                   
+                 len+=1;
+                
+                
             for(int j=0;j<n_ele;j++)
             {
                 System.out.print(b_dis.values[j]+" ");
@@ -377,7 +387,9 @@ public class GUIScreen extends javax.swing.JFrame {
                 
                 outputPane.add(labels[len],new FlowLayout());
                 el+=1;
-                len+=1;
+                   
+                 len+=1;
+                
             }
             for(int j=el;j<bfr;j++)
             {                   labels[len].setText("");
@@ -388,7 +400,9 @@ public class GUIScreen extends javax.swing.JFrame {
                 labels[len].setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255,255, 255), 2));
                 labels[len].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 outputPane.add(labels[len],new FlowLayout());
-                len+=1;
+                   
+                 len+=1;
+                
             }
             el=0;
             temp=Integer.toString(b_dis.local_depth);
@@ -398,13 +412,14 @@ public class GUIScreen extends javax.swing.JFrame {
                 outputPane.add(labels[len],new FlowLayout());
                 len+=1;
             System.out.println();
+            
+                
         }
         D=clear();
         searchOutput.setText("");
         gdLabel.setText("2");
         
-        outputPane.revalidate();
-        jScrollPane1.revalidate();
+        
         
     }//GEN-LAST:event_clearButtonActionPerformed
     public void display(Directory dir)
@@ -488,7 +503,7 @@ public class GUIScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GUIScreen().setVisible(true);
-                
+                 
             }
         });
     }

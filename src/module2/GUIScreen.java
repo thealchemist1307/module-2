@@ -274,7 +274,7 @@ public class GUIScreen extends javax.swing.JFrame {
         getContentPane().add(inputKey);
         inputKey.setBounds(440, 120, 140, 30);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("/home/nishit/module-2/src/module2/nackg.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/module2/nackg.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 890, 510);
         jLabel2.getAccessibleContext().setAccessibleDescription("");
@@ -290,14 +290,8 @@ public class GUIScreen extends javax.swing.JFrame {
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
        
         inputKey.setText("Primary Key");
-        if(Test.search(i,D))
-        {
-            JOptionPane.showMessageDialog(this,
-    "The Value Already Exits",
-    "Inane error",
-    JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+        
+      
         System.out.println(i);
         
         Test.insert(i,D);
@@ -319,7 +313,7 @@ public class GUIScreen extends javax.swing.JFrame {
         gdLabel.setText(gd);
 
         jScrollPane1.revalidate();
-        }
+        
        
     }//GEN-LAST:event_insertActionPerformed
 
